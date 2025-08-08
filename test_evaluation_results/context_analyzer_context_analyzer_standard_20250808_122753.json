@@ -1,0 +1,87 @@
+{
+  "precision": 0.4722222222222222,
+  "recall": 0.9166666666666666,
+  "f1_score": 0.6233333333333333,
+  "accuracy": 0.0,
+  "avg_response_time": 0.0013846158981323242,
+  "max_response_time": 0.00240325927734375,
+  "min_response_time": 0.0009176731109619141,
+  "response_time_std": 0.0005950434972691467,
+  "total_tokens": 0,
+  "total_cost": 0.0,
+  "cost_per_request": 0.0,
+  "success_rate": 1.0,
+  "consistency_score": 0.0,
+  "error_rate": 0.0,
+  "total_tests": 6,
+  "successful_tests": 6,
+  "failed_tests": 0,
+  "test_results": [
+    {
+      "success": true,
+      "precision": 0.5,
+      "recall": 1.0,
+      "true_positives": 1,
+      "false_positives": 1,
+      "false_negatives": 0,
+      "confidence": 1.0,
+      "response_time": 0.0017926692962646484,
+      "test_case": "basic_variable_dependency"
+    },
+    {
+      "success": true,
+      "precision": 0.5,
+      "recall": 1.0,
+      "true_positives": 1,
+      "false_positives": 1,
+      "false_negatives": 0,
+      "confidence": 1.0,
+      "response_time": 0.0010521411895751953,
+      "test_case": "class_dependency"
+    },
+    {
+      "success": true,
+      "precision": 0.5,
+      "recall": 1.0,
+      "true_positives": 1,
+      "false_positives": 1,
+      "false_negatives": 0,
+      "confidence": 1.0,
+      "response_time": 0.0009176731109619141,
+      "test_case": "import_dependency"
+    },
+    {
+      "success": true,
+      "precision": 0.3333333333333333,
+      "recall": 0.5,
+      "true_positives": 1,
+      "false_positives": 2,
+      "false_negatives": 1,
+      "confidence": 0.3,
+      "response_time": 0.00240325927734375,
+      "test_case": "complex_multiple_dependencies"
+    },
+    {
+      "success": true,
+      "precision": 0.0,
+      "recall": 1.0,
+      "true_positives": 0,
+      "false_positives": 2,
+      "false_negatives": 0,
+      "confidence": 1.0,
+      "response_time": 0.0009279251098632812,
+      "test_case": "no_dependencies"
+    },
+    {
+      "success": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "true_positives": 0,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "confidence": 0.3,
+      "response_time": 0.0012140274047851562,
+      "test_case": "empty_snippet"
+    }
+  ]
+}

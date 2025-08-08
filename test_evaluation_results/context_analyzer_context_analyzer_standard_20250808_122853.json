@@ -1,0 +1,87 @@
+{
+  "precision": 0.4722222222222222,
+  "recall": 1.0,
+  "f1_score": 0.6415094339622641,
+  "accuracy": 0.0,
+  "avg_response_time": 0.0010480880737304688,
+  "max_response_time": 0.0012214183807373047,
+  "min_response_time": 0.0009124279022216797,
+  "response_time_std": 0.00011443326845034731,
+  "total_tokens": 0,
+  "total_cost": 0.0,
+  "cost_per_request": 0.0,
+  "success_rate": 1.0,
+  "consistency_score": 0.0,
+  "error_rate": 0.0,
+  "total_tests": 6,
+  "successful_tests": 6,
+  "failed_tests": 0,
+  "test_results": [
+    {
+      "success": true,
+      "precision": 0.5,
+      "recall": 1.0,
+      "true_positives": 1,
+      "false_positives": 1,
+      "false_negatives": 0,
+      "confidence": 1.0,
+      "response_time": 0.0011210441589355469,
+      "test_case": "basic_variable_dependency"
+    },
+    {
+      "success": true,
+      "precision": 0.5,
+      "recall": 1.0,
+      "true_positives": 1,
+      "false_positives": 1,
+      "false_negatives": 0,
+      "confidence": 1.0,
+      "response_time": 0.0010004043579101562,
+      "test_case": "class_dependency"
+    },
+    {
+      "success": true,
+      "precision": 0.5,
+      "recall": 1.0,
+      "true_positives": 1,
+      "false_positives": 1,
+      "false_negatives": 0,
+      "confidence": 1.0,
+      "response_time": 0.0009555816650390625,
+      "test_case": "import_dependency"
+    },
+    {
+      "success": true,
+      "precision": 0.3333333333333333,
+      "recall": 1.0,
+      "true_positives": 2,
+      "false_positives": 4,
+      "false_negatives": 0,
+      "confidence": 1.0,
+      "response_time": 0.0010776519775390625,
+      "test_case": "complex_multiple_dependencies"
+    },
+    {
+      "success": true,
+      "precision": 0.0,
+      "recall": 1.0,
+      "true_positives": 0,
+      "false_positives": 3,
+      "false_negatives": 0,
+      "confidence": 1.0,
+      "response_time": 0.0009124279022216797,
+      "test_case": "no_dependencies"
+    },
+    {
+      "success": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "true_positives": 0,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "confidence": 0.3,
+      "response_time": 0.0012214183807373047,
+      "test_case": "empty_snippet"
+    }
+  ]
+}

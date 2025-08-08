@@ -1,0 +1,65 @@
+{
+  "precision": 0.8125,
+  "recall": 1.0,
+  "f1_score": 0.896551724137931,
+  "accuracy": 0.0,
+  "avg_response_time": 0.47683316469192505,
+  "max_response_time": 0.6148028373718262,
+  "min_response_time": 0.3542623519897461,
+  "response_time_std": 0.11295598382518267,
+  "total_tokens": 0,
+  "total_cost": 0.0,
+  "cost_per_request": 0.0,
+  "success_rate": 1.0,
+  "consistency_score": 0.0,
+  "error_rate": 0.0,
+  "total_tests": 4,
+  "successful_tests": 4,
+  "failed_tests": 0,
+  "test_results": [
+    {
+      "success": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "true_positives": 1,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "confidence": 1.0,
+      "response_time": 0.5144071578979492,
+      "test_case": "small_codebase_performance"
+    },
+    {
+      "success": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "true_positives": 1,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "confidence": 1.0,
+      "response_time": 0.3542623519897461,
+      "test_case": "medium_codebase_performance"
+    },
+    {
+      "success": true,
+      "precision": 1.0,
+      "recall": 1.0,
+      "true_positives": 1,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "confidence": 1.0,
+      "response_time": 0.4238603115081787,
+      "test_case": "large_codebase_performance"
+    },
+    {
+      "success": true,
+      "precision": 0.25,
+      "recall": 1.0,
+      "true_positives": 1,
+      "false_positives": 3,
+      "false_negatives": 0,
+      "confidence": 0.95,
+      "response_time": 0.6148028373718262,
+      "test_case": "long_snippet_performance"
+    }
+  ]
+}

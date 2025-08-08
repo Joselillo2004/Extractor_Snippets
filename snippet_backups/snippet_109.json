@@ -1,0 +1,7 @@
+{
+  "id": 109,
+  "description": "Snippet 1: Ejemplo de código Python de referencia",
+  "tags": "referencia:python:nivel-beginner:tema-variables:tema-strings:facil:",
+  "content": "print(\"Ingresa tu nombre:\")\nnumero = input()",
+  "backup_timestamp": 1754688252.792346
+}

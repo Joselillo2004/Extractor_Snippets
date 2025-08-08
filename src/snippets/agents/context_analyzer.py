@@ -17,6 +17,9 @@ from pathlib import Path
 
 from .base_agent import BaseAgent, Snippet, AgentResult, DependencyMap
 from .llm_client import get_llm_client, LLMConfig
+import sys
+sys.path.append('/home/joselillo/proyectos/Extractor_snippets')
+from core.robust_json_parser import RobustJSONParser
 
 import logging
 logger = logging.getLogger(__name__)
@@ -47,6 +50,9 @@ class ContextAnalyzer(BaseAgent):
         
         self.window_size = window_size
         self.prompt_template = self._load_prompt_template()
+        
+        # Inicializar parser JSON robusto
+        self.json_parser = RobustJSONParser()
         
         logger.info(f"ContextAnalyzer initialized with window_size={window_size}")
     
@@ -152,7 +158,7 @@ Return JSON with variables, classes, imports, functions."""
     
     def _parse_llm_response(self, llm_content: str) -> DependencyMap:
         """
-        Parsea la respuesta JSON del LLM y crea DependencyMap
+        Parsea la respuesta JSON del LLM usando el parser robusto y crea DependencyMap
         
         Args:
             llm_content: Contenido de la respuesta del LLM
@@ -161,59 +167,57 @@ Return JSON with variables, classes, imports, functions."""
             DependencyMap estructurado
         """
         try:
-            # Intentar extraer JSON de la respuesta con múltiples patrones
-            json_str = None
+            # Usar el parser JSON robusto
+            parsed = self.json_parser.parse(llm_content)
             
-            # Patrón 1: Bloque json con backticks
-            json_match = re.search(r'```json\s*({.*?})\s*```', llm_content, re.DOTALL)
-            if json_match:
-                json_str = json_match.group(1)
-            else:
-                # Patrón 2: Bloque de código sin especificar idioma
-                json_match = re.search(r'```\s*({.*?})\s*```', llm_content, re.DOTALL)
-                if json_match:
-                    json_str = json_match.group(1)
-                else:
-                    # Patrón 3: Buscar objeto JSON directamente
-                    json_match = re.search(r'({\s*".*?})(?=\s*$)', llm_content, re.DOTALL | re.MULTILINE)
-                    if json_match:
-                        json_str = json_match.group(1)
-                    else:
-                        # Patrón 4: Toda la respuesta como JSON (limpiando posible texto extra)
-                        json_str = llm_content.strip()
-                        # Intentar encontrar el primer { hasta el último }
-                        start = json_str.find('{')
-                        end = json_str.rfind('}')
-                        if start != -1 and end != -1 and end > start:
-                            json_str = json_str[start:end+1]
+            logger.debug(f"Successfully parsed JSON using robust parser")
             
-            if not json_str:
-                logger.error("No JSON found in LLM response")
-                logger.debug(f"Raw content: {llm_content[:200]}...")
-                return DependencyMap(confidence=0.0, error="No JSON found in response")
+            # Crear DependencyMap con validación y mapeo de claves
+            # Manejar variaciones en los nombres de las claves
+            variables = parsed.get("variables", parsed.get("variable_dependencies", {}))
+            classes = parsed.get("classes", parsed.get("class_dependencies", {}))
+            imports = parsed.get("imports", parsed.get("import_dependencies", {}))
+            functions = parsed.get("functions", parsed.get("function_dependencies", {}))
             
-            # Parsear JSON con limpieza adicional
-            json_str = json_str.strip()
-            parsed = json.loads(json_str)
+            # Manejar diferentes nombres para confidence
+            confidence = parsed.get("confidence", 
+                        parsed.get("overall_confidence", 
+                        parsed.get("analysis_confidence", 0.5)))
             
-            # Crear DependencyMap con validación
+            # Convertir listas en diccionarios si es necesario
+            if isinstance(variables, list):
+                variables = {var: {"confidence": 0.7, "type": "unknown"} for var in variables}
+            if isinstance(classes, list):
+                classes = {cls: {"confidence": 0.7, "type": "unknown"} for cls in classes}
+            if isinstance(imports, list):
+                imports = {imp: {"confidence": 0.7, "type": "module"} for imp in imports}
+            if isinstance(functions, list):
+                functions = {func: {"confidence": 0.7, "type": "function"} for func in functions}
+            
             return DependencyMap(
-                variables=parsed.get("variables", {}),
-                classes=parsed.get("classes", {}),
-                imports=parsed.get("imports", {}),
-                functions=parsed.get("functions", {}),
-                confidence=parsed.get("overall_confidence", 0.5)
+                variables=variables,
+                classes=classes,
+                imports=imports,
+                functions=functions,
+                confidence=float(confidence) if confidence is not None else 0.5
             )
             
-        except json.JSONDecodeError as e:
-            logger.error(f"Failed to parse LLM JSON response: {e}")
-            logger.debug(f"Raw LLM content: {llm_content[:300]}...")
-            logger.debug(f"Attempted JSON string: {json_str[:200] if json_str else 'None'}...")
-            return DependencyMap(confidence=0.0, error=f"JSON parsing failed: {str(e)}")
+        except ValueError as e:
+            # El parser robusto no pudo procesar el contenido
+            logger.warning(f"Robust JSON parser failed: {e}")
+            logger.debug(f"Raw LLM content: {llm_content[:500]}...")
+            return DependencyMap(
+                confidence=0.0, 
+                error=f"Robust JSON parsing failed: {str(e)}"
+            )
         
         except Exception as e:
             logger.error(f"Error processing LLM response: {e}")
-            return DependencyMap(confidence=0.0, error=str(e))
+            logger.debug(f"Raw LLM content: {llm_content[:500]}...")
+            return DependencyMap(
+                confidence=0.0, 
+                error=f"Response processing failed: {str(e)}"
+            )
     
     def _analyze_with_ast_fallback(self, snippet: Snippet) -> DependencyMap:
         """
@@ -384,5 +388,6 @@ Return JSON with variables, classes, imports, functions."""
             'agent': self.agent_name,
             'window_size': self.window_size,
             'llm_stats': llm_stats,
-            'prompt_template_loaded': bool(self.prompt_template)
+            'prompt_template_loaded': bool(self.prompt_template),
+            'json_parser_stats': self.json_parser.get_stats()
         }

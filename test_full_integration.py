@@ -6,6 +6,7 @@ Test completo de integración con Groq API
 import asyncio
 import sys
 from pathlib import Path
+import pytest
 
 # Agregar src al path
 sys.path.insert(0, str(Path(__file__).parent / "src"))
@@ -15,6 +16,7 @@ from snippets.agents.context_builder import ContextBuilder
 from snippets.agents.llm_client import LLMConfig
 from snippets.agents.base_agent import Snippet
 
+@pytest.mark.asyncio
 async def test_full_integration():
     """Test completo de integración Context Analyzer + Builder"""
     print("🎉 FULL INTEGRATION TEST WITH GROQ API")
@@ -112,7 +114,7 @@ async def test_full_integration():
         print(f"❌ Context building error: {e}")
         return None
 
-async def test_execution(context_code, target_snippet):
+async def execute_code_helper(context_code, target_snippet):
     """Test de ejecución del código completo"""
     print("\n🚀 STEP 3: Code Execution Test")
     print("-" * 30)
@@ -163,7 +165,7 @@ async def main():
         if context_code:
             # Test de ejecución
             target_snippet = Snippet(content='message = greet(name, age)', index=3)
-            execution_success = await test_execution(context_code, target_snippet)
+            execution_success = await execute_code_helper(context_code, target_snippet)
             
             # Resultado final
             print("\n🏆 INTEGRATION TEST RESULTS")

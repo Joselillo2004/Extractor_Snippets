@@ -1,0 +1,8 @@
+[
+  {
+    "description": "Ejemplo simple de Python",
+    "language": "python", 
+    "code": "print('Hola mundo')\nx = 5\nprint(x)",
+    "tags": ["python", "ejemplo", "basico"]
+  }
+]

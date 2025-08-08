@@ -1,0 +1,7 @@
+{
+  "id": 113,
+  "description": "Snippet 5: Ejemplo de código Python de referencia",
+  "tags": "referencia:python:nivel-beginner:tema-variables:tema-dictionaries:tema-strings:facil:",
+  "content": "variable = 'Joselillo Castillo'\notra = 'Genios estudiantes'\n\nforma = \"El profesor '{}' y sus '{}'\".format(variable,otra)\n\n# Retorna lo siguiente:",
+  "backup_timestamp": 1754688257.21672
+}

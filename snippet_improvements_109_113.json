@@ -1,0 +1,90 @@
+[
+  {
+    "id": 109,
+    "current_description": "Snippet 1: Ejemplo de código Python de referencia",
+    "enhanced_description": "Interacción Básica Con Usuario (entrada: texto, salida: texto) - números, entrada-usuario, salida-datos [ejemplo integrado]",
+    "current_tags": "referencia:python:nivel-beginner:tema-variables:tema-strings:facil:",
+    "enhanced_tags": "python:referencia:nivel-muy-facil:tema-números:tema-entrada-usuario:tema-salida-datos:ejemplo-integrado:",
+    "content": "print(\"Ingresa tu nombre:\")\nnumero = input()",
+    "analysis": {
+      "main_purpose": "Interacción básica con usuario",
+      "complexity": "muy-facil",
+      "key_concepts": [
+        "números",
+        "entrada-usuario",
+        "salida-datos"
+      ],
+      "educational_value": "ejemplo-integrado"
+    }
+  },
+  {
+    "id": 110,
+    "current_description": "Snippet 2: Ejemplo de código Python de referencia",
+    "enhanced_description": "Operaciones Básicas De Python - números",
+    "current_tags": "referencia:python:nivel-intermediate:facil:",
+    "enhanced_tags": "python:referencia:nivel-muy-facil:tema-números:concepto-básico:",
+    "content": "float(numero) + 5",
+    "analysis": {
+      "main_purpose": "Operaciones básicas de Python",
+      "complexity": "muy-facil",
+      "key_concepts": [
+        "números"
+      ],
+      "educational_value": "concepto-básico"
+    }
+  },
+  {
+    "id": 111,
+    "current_description": "Snippet 3: Ejemplo de código Python de referencia",
+    "enhanced_description": "Interacción Usuario Con Bucles (entrada: texto, salida: texto) - listas, números, bucles-for [ejemplo completo]",
+    "current_tags": "referencia:python:nivel-beginner:tema-variables:tema-loops:tema-lists:facil:",
+    "enhanced_tags": "python:referencia:nivel-facil:tema-listas:tema-números:tema-bucles-for:tema-entrada-usuario:ejemplo-completo:",
+    "content": "listas  = []\n\nprint(\"Ingresa 5 números\")\nfor i in range(5):\n\tlistas.append(input(\"Ingresa número: \"))\nprint(\"Numeros ingresados:\",listas)",
+    "analysis": {
+      "main_purpose": "Interacción usuario con bucles",
+      "complexity": "facil",
+      "key_concepts": [
+        "listas",
+        "números",
+        "bucles-for",
+        "entrada-usuario",
+        "salida-datos"
+      ],
+      "educational_value": "ejemplo-completo"
+    }
+  },
+  {
+    "id": 112,
+    "current_description": "Snippet 4: Ejemplo de código Python de referencia",
+    "enhanced_description": "Salida Simple De Datos (salida: texto) - números, salida-datos [ejemplo integrado]",
+    "current_tags": "referencia:python:nivel-intermediate:tema-strings:facil:",
+    "enhanced_tags": "python:referencia:nivel-muy-facil:tema-números:tema-salida-datos:ejemplo-integrado:",
+    "content": "print(\"Hola a todos mis amigos\")",
+    "analysis": {
+      "main_purpose": "Salida simple de datos",
+      "complexity": "muy-facil",
+      "key_concepts": [
+        "números",
+        "salida-datos"
+      ],
+      "educational_value": "ejemplo-integrado"
+    }
+  },
+  {
+    "id": 113,
+    "current_description": "Snippet 5: Ejemplo de código Python de referencia",
+    "enhanced_description": "Formateo De Strings - diccionarios, formateo-strings [ejemplo integrado]",
+    "current_tags": "referencia:python:nivel-beginner:tema-variables:tema-dictionaries:tema-strings:facil:",
+    "enhanced_tags": "python:referencia:nivel-muy-facil:tema-diccionarios:tema-formateo-strings:ejemplo-integrado:",
+    "content": "variable = 'Joselillo Castillo'\notra = 'Genios estudiantes'\n\nforma = \"El profesor '{}' y sus '{}'\".format(variable,otra)\n\n# Retorna lo siguiente:",
+    "analysis": {
+      "main_purpose": "Formateo de strings",
+      "complexity": "muy-facil",
+      "key_concepts": [
+        "diccionarios",
+        "formateo-strings"
+      ],
+      "educational_value": "ejemplo-integrado"
+    }
+  }
+]

@@ -1,0 +1,7 @@
+{
+  "id": 111,
+  "description": "Snippet 3: Ejemplo de código Python de referencia",
+  "tags": "referencia:python:nivel-beginner:tema-variables:tema-loops:tema-lists:facil:",
+  "content": "listas  = []\n\nprint(\"Ingresa 5 números\")\nfor i in range(5):\n\tlistas.append(input(\"Ingresa número: \"))\nprint(\"Numeros ingresados:\",listas)",
+  "backup_timestamp": 1754688253.8933222
+}

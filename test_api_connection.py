@@ -6,12 +6,14 @@ Test de conexión con Groq API
 import asyncio
 import sys
 from pathlib import Path
+import pytest
 
 # Agregar src al path
 sys.path.insert(0, str(Path(__file__).parent / "src"))
 
 from snippets.agents.llm_client import get_llm_client, LLMConfig
 
+@pytest.mark.asyncio
 async def test_groq_api():
     """Test de conexión básico con Groq API"""
     print("🧪 Testing Groq API Connection...")
@@ -53,6 +55,7 @@ async def test_groq_api():
         print(f"Error type: {type(e).__name__}")
         return False
 
+@pytest.mark.asyncio
 async def test_context_builder_with_api():
     """Test de Context Builder con API real"""
     print("\n🛠️ Testing Context Builder with real API...")
