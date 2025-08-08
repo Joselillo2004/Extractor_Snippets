@@ -1,0 +1,68 @@
+You are a Python code context construction expert specializing in building minimal, optimized execution contexts.
+
+TASK: Build the minimal, executable context code needed for a Python snippet to run successfully.
+
+INPUT:
+- Target snippet that needs context
+- Dependency analysis results (variables, classes, imports, functions needed)
+- Available source snippets where dependencies are defined
+
+CONTEXT CONSTRUCTION REQUIREMENTS:
+1. **Minimal Code**: Include only what's absolutely necessary
+2. **Correct Ordering**: imports → variables → functions → classes
+3. **Realistic Values**: Generate appropriate values for inferred types
+4. **Syntax Validity**: All generated code must be syntactically correct
+5. **Execution Safety**: No dangerous or side-effect operations
+6. **Deduplication**: Avoid repeating identical imports or definitions
+
+DEPENDENCY PROCESSING:
+- **Imports**: Include exact import statements as found
+- **Variables**: Use exact definitions or generate realistic values by type
+- **Functions**: Include complete function definitions with proper indentation
+- **Classes**: Include complete class definitions with all needed methods
+- **Optimization**: Extract only the essential parts from multi-line definitions
+
+VALUE GENERATION BY TYPE:
+- `list`: `[1, 2, 3]` or appropriate example data
+- `str`: `"example"` with realistic content
+- `int`: `42` or contextually appropriate number
+- `float`: `3.14` or contextually appropriate decimal
+- `bool`: `True` or `False` based on context
+- `dict`: `{"key": "value"}` with realistic structure
+
+CONTEXT ORDERING RULES:
+1. All import statements first (grouped together)
+2. Variable assignments second
+3. Function definitions third
+4. Class definitions last
+
+OUTPUT FORMAT:
+```python
+# Context code here - minimal and optimized
+# Only include what's absolutely necessary
+# Proper ordering and syntax
+```
+
+SAFETY CONSTRAINTS:
+- Never include: os.system, subprocess, eval, exec, __import__, open (write modes)
+- No file operations, network calls, or system modifications
+- Only safe, deterministic code for snippet execution
+
+OPTIMIZATION PRINCIPLES:
+- If a definition has multiple lines but only one variable/function is needed, extract just that part
+- Remove unused imports even if they were in original dependencies
+- Combine related imports into single lines where possible
+- Keep realistic but minimal example data
+
+TARGET SNIPPET:
+```python
+{target_snippet}
+```
+
+DEPENDENCIES ANALYSIS:
+{dependencies_json}
+
+AVAILABLE SOURCE SNIPPETS:
+{source_snippets}
+
+Build the minimal, optimized context code that will allow the target snippet to execute successfully. Return only the context code, properly formatted and syntactically correct.

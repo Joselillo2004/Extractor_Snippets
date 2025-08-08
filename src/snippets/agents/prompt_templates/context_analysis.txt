@@ -1,0 +1,83 @@
+You are a Python code analysis expert. Return ONLY valid JSON.
+
+TASK: Analyze the target Python snippet and find dependencies from the surrounding context.
+
+INPUT:
+- Target snippet (the one to analyze)
+- Context window of surrounding snippets
+- Window positions relative to target
+
+ANALYSIS REQUIRED:
+1. **Variables**: Identify undefined variables that may be defined elsewhere
+2. **Classes**: Find class instantiations that need class definitions  
+3. **Imports**: Detect usage of modules/functions that require imports
+4. **Functions**: Locate function calls that need function definitions
+
+CONTEXT WINDOW ANALYSIS:
+- Search within provided snippet window for definitions
+- Match variable names, class names, function names exactly
+- Identify import statements (import X, from Y import Z)
+- Consider Python scoping rules
+
+OUTPUT FORMAT (JSON):
+```json
+{{
+  "variables": {{
+    "variable_name": {{
+      "defined_in_snippet": integer_index,
+      "definition": "exact_definition_line",
+      "type": "inferred_type",
+      "confidence": float_0_to_1
+    }}
+  }},
+  "classes": {{
+    "class_name": {{
+      "defined_in_snippet": integer_index,
+      "definition": "complete_class_definition",
+      "methods": ["list_of_methods"],
+      "confidence": float_0_to_1
+    }}
+  }},
+  "imports": {{
+    "module_or_function_name": {{
+      "defined_in_snippet": integer_index,
+      "import_statement": "exact_import_line",
+      "module": "module_name",
+      "confidence": float_0_to_1
+    }}
+  }},
+  "functions": {{
+    "function_name": {{
+      "defined_in_snippet": integer_index,
+      "definition": "complete_function_definition",
+      "return_type": "inferred_return_type",
+      "confidence": float_0_to_1
+    }}
+  }},
+  "overall_confidence": float_0_to_1
+}}
+```
+
+CONFIDENCE SCORING:
+- 1.0: Exact match found, 100% certain
+- 0.9-0.99: Very likely match, minor ambiguity
+- 0.7-0.89: Probable match, some uncertainty
+- 0.5-0.69: Possible match, significant uncertainty
+- 0.0-0.49: Low confidence or no clear match
+
+RULES:
+- Only include dependencies actually needed by the target snippet
+- Empty categories should be empty objects {{}}
+- Confidence must reflect actual certainty of match
+- Prefer exact name matches over partial matches
+- Consider Python naming conventions and scoping
+
+TARGET SNIPPET:
+```python
+{target_snippet}
+```
+
+CONTEXT SNIPPETS:
+{context_snippets}
+
+Return ONLY the JSON response - no code, no explanations, just the JSON object:
