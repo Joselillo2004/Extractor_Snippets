@@ -105,11 +105,11 @@
 	
 # Ordenando de forma ascendente los elementos de una lista:
 
-	lista.sort()
+	sorted(lista)
 
 # Ordenando una lista de forma descendente:
 
-	lista.sort(reverse=True)
+	sorted(lista, reverse = True)
 
 # Insertando un elemento en una lista:
 
